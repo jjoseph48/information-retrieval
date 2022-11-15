@@ -18,25 +18,26 @@ public class InvertedIndex {
         
     }
     
-    public boolean add (String term, String doc) {
+    public boolean add (String term, String namaDok) {
         Term a = new Term (term);
+        Dokumen dok = new Dokumen(namaDok);
         
         if(dict.isEmpty()){
             dict.addSort(a);
-            a.addDoc(doc);
+            a.addDoc(dok);
             System.out.println("Berhasil");
             return true;
         }
         else{
             for (int i = 0; i < dict.size(); i++) {
                 if(dict.get(i).getNamaTerm() == term){
-                    dict.get(i).addDoc(doc);
+                    dict.get(i).addDoc(dok);
                     System.out.println("Masukkan ke yang sama");
                     return true;
                 }
             }
             dict.addSort(a);
-            a.addDoc(doc);
+            a.addDoc(dok);
         }
         return true;
     }

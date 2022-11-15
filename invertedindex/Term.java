@@ -13,11 +13,11 @@ import LinkedList.LinkedListOrderedUnique;
  */
 public class Term implements Comparable{
     String namaTerm;
-    LinkedListOrderedUnique doc;
+    LinkedListOrderedUnique listing;
     
     public Term(String namaTerm){
         this.namaTerm = namaTerm;
-        doc = new LinkedListOrderedUnique();
+        listing = new LinkedListOrderedUnique();
     }
 
     public String getNamaTerm() {
@@ -28,8 +28,8 @@ public class Term implements Comparable{
         this.namaTerm = namaTerm;
     }
     
-    public void addDoc(String namaDoc){
-        this.doc.addSort(namaDoc);
+    public void addDoc(Dokumen namaDoc){
+        this.listing.addSort(namaDoc);
     }
     
     @Override
