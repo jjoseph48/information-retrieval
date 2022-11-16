@@ -12,10 +12,11 @@ package invertedindex;
 public class InvertedIndexMain {
     public static void main(String[] args) {
         InvertedIndex coba1 = new InvertedIndex();
-        coba1.add("lumpia", "doc1.txt");
-        coba1.add("lumpia", "doc3.txt");
-        coba1.add("rabu", "doc1.txt");
-        coba1.add("rabu", "doc6.txt");
-        coba1.add("semarang", "doc10.txt");
+        coba1.bacaFile();
+//        coba1.add("lumpia", "doc1.txt");
+//        coba1.add("lumpia", "doc3.txt");
+//        coba1.add("rabu", "doc1.txt");
+//        coba1.add("rabu", "doc6.txt");
+//        coba1.add("semarang", "doc10.txt");
     }
 }

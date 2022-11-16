@@ -6,6 +6,10 @@
 package invertedindex;
 
 import LinkedList.LinkedListOrderedUnique;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 /**
  *
@@ -13,9 +17,57 @@ import LinkedList.LinkedListOrderedUnique;
  */
 public class InvertedIndex {
     LinkedListOrderedUnique<Term> dict;
+    String path = "D:\\TUGAS VEROL\\Materi Kuliah Smstr 5\\Pemerolehan Informasi\\Tugas\\Koleksi";
+    Scanner input;
+    String sentence = "";
 
     public InvertedIndex() {
         dict = new LinkedListOrderedUnique<Term>();
+    }
+    
+    public void bacaFile(){
+        File name = new File(path);
+
+        if (name.exists()) {
+            if (name.isDirectory()) {
+                String directory[] = name.list();
+                System.out.println("n\nDirectort contents:\n");
+
+                for (String directoryName : directory) {
+                    System.out.printf("%s\n", directoryName);
+
+                    try {
+                        input = new Scanner(new File(name.getAbsolutePath() + "\\" + directoryName));
+
+                        try {
+                            while (input.hasNext()) {
+                                sentence = input.nextLine();
+                                String[] tokens = sentence.split(" ");
+                                for (String token : tokens) {
+                                    add(token, directoryName);
+                                    System.out.println(directoryName + " " + token);
+                                }
+                            }
+
+                        } catch (NoSuchElementException elementException) {
+                            System.err.println("File improperly formed");
+                            input.close();
+                            System.exit(1);
+                        } catch (IllegalStateException stateException) {
+                            System.err.println("Error reading from file");
+                            System.exit(1);
+                        }
+                    } catch (FileNotFoundException fileNotFoundException) {
+                        System.err.println("Error opening file");
+                        System.exit(1);
+                    }
+                    System.out.println("");
+
+                }
+            } else {
+                System.out.printf("%s %s", path, "does not exist");
+            }
+        }
     }
     
     public boolean add (String term, String namaDok) {
@@ -26,7 +78,7 @@ public class InvertedIndex {
             newTerm.listing = new LinkedListOrderedUnique<>();
             newTerm.getListing().addSort(new Dokumen(namaDok));
             dict.addSort(newTerm);
-            System.out.println("Berhasil");
+//            System.out.println("Berhasil");
             return true;
         }
         else{
