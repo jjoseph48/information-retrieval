@@ -12,32 +12,25 @@ import LinkedList.LinkedListOrderedUnique;
  * @author Gallery
  */
 public class InvertedIndex {
-    LinkedListOrderedUnique<Term> dict = new LinkedListOrderedUnique<Term>();
+    LinkedListOrderedUnique<Term> dict;
 
     public InvertedIndex() {
-        
+        dict = new LinkedListOrderedUnique<Term>();
     }
     
     public boolean add (String term, String namaDok) {
-        Term a = new Term (term);
-        Dokumen dok = new Dokumen(namaDok);
+        Term inputTerm = dict.get(new Term(term));
         
-        if(dict.isEmpty()){
-            dict.addSort(a);
-            a.addDoc(dok);
+        if(inputTerm == null){
+            Term newTerm = new Term(term);
+            newTerm.listing = new LinkedListOrderedUnique<>();
+            newTerm.getListing().addSort(new Dokumen(namaDok));
+            dict.addSort(newTerm);
             System.out.println("Berhasil");
             return true;
         }
         else{
-            for (int i = 0; i < dict.size(); i++) {
-                if(dict.get(i).getNamaTerm() == term){
-                    dict.get(i).addDoc(dok);
-                    System.out.println("Masukkan ke yang sama");
-                    return true;
-                }
-            }
-            dict.addSort(a);
-            a.addDoc(dok);
+            inputTerm.getListing().addSort(new Dokumen(namaDok));
         }
         return true;
     }

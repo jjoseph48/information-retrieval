@@ -9,7 +9,7 @@ package invertedindex;
  *
  * @author Gallery
  */
-public class Dokumen {
+public class Dokumen implements Comparable{
     String namaDok;
 
     public Dokumen(String namaDok) {
@@ -20,9 +20,14 @@ public class Dokumen {
         return namaDok;
     }
 
-    public void setNamaDok(String namaDok) {
-        this.namaDok = namaDok;
+    @Override
+    public int compareTo(Object o) {
+        return namaDok.compareTo(((Dokumen)o).getNamaDok());
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Dokumen{" + "namaDok=" + namaDok + '}';
+    }
+  
 }

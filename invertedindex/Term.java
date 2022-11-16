@@ -13,34 +13,27 @@ import LinkedList.LinkedListOrderedUnique;
  */
 public class Term implements Comparable{
     String namaTerm;
-    LinkedListOrderedUnique listing;
+    LinkedListOrderedUnique<Dokumen> listing;
     
     public Term(String namaTerm){
         this.namaTerm = namaTerm;
-        listing = new LinkedListOrderedUnique();
     }
 
     public String getNamaTerm() {
         return namaTerm;
     }
-
-    public void setNamaTerm(String namaTerm) {
-        this.namaTerm = namaTerm;
+    
+    public LinkedListOrderedUnique<Dokumen> getListing(){
+        return listing;
     }
     
-    public void addDoc(Dokumen namaDoc){
-        this.listing.addSort(namaDoc);
-    }
+//    public void addDoc(Dokumen namaDoc){
+//        this.listing.addSort(namaDoc);
+//    }
     
     @Override
     public int compareTo(Object t) {
-        Term other = (Term)t;
-        
-        if(this.namaTerm.compareTo(other.getNamaTerm())< 0){
-            return -1;
-        }else{
-            return 1;
-        }
+        return namaTerm.compareTo(((Term) t).getNamaTerm());
     }
 
 }
