@@ -8,6 +8,7 @@ package invertedindex;
 import LinkedList.LinkedListOrderedUnique;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -78,12 +79,23 @@ public class InvertedIndex {
             newTerm.listing = new LinkedListOrderedUnique<>();
             newTerm.getListing().addSort(new Dokumen(namaDok));
             dict.addSort(newTerm);
-//            System.out.println("Berhasil");
             return true;
         }
         else{
             inputTerm.getListing().addSort(new Dokumen(namaDok));
         }
         return true;
+    }
+    
+    public void search(String term){
+        Term searchTerm = dict.get(new Term(term));
+        
+        if(searchTerm == null){
+            System.out.println("Kata tidak ditemukan");
+        }else{
+            LinkedListOrderedUnique<Dokumen> postSearch = searchTerm.getListing();
+            
+            
+        }
     }
 }
