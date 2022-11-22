@@ -27,10 +27,6 @@ public class Term implements Comparable{
         return listing;
     }
     
-//    public void addDoc(Dokumen namaDoc){
-//        this.listing.addSort(namaDoc);
-//    }
-    
     @Override
     public int compareTo(Object t) {
         return namaTerm.compareTo(((Term) t).getNamaTerm());
