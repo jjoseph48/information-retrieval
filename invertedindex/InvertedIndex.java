@@ -17,6 +17,7 @@ import java.util.Scanner;
  * @author Gallery
  */
 public class InvertedIndex {
+
     LinkedListOrderedUnique<Term> dict;
     String path = "D:\\TUGAS VEROL\\Materi Kuliah Smstr 5\\Pemerolehan Informasi\\Tugas\\Koleksi";
     Scanner input;
@@ -25,8 +26,8 @@ public class InvertedIndex {
     public InvertedIndex() {
         dict = new LinkedListOrderedUnique<Term>();
     }
-    
-    public void bacaFile(){
+
+    public void bacaFile() {
         File name = new File(path);
 
         if (name.exists()) {
@@ -70,69 +71,89 @@ public class InvertedIndex {
             }
         }
     }
-    
-    public boolean add (String term, String namaDok) {
+
+    public boolean add(String term, String namaDok) {
         Term inputTerm = dict.get(new Term(term));
-        
-        if(inputTerm == null){
+
+        if (inputTerm == null) {
             Term newTerm = new Term(term);
             newTerm.listing = new LinkedListOrderedUnique<>();
             newTerm.getListing().addSort(new Dokumen(namaDok));
             dict.addSort(newTerm);
             return true;
-        }
-        else{
+        } else {
             inputTerm.getListing().addSort(new Dokumen(namaDok));
         }
         return true;
     }
-    
-    public void cari(String term){
-        Term searchTerm = dict.get(new Term(term));
-        LinkedListOrderedUnique<Dokumen> index = getPost(term);
-        
-        if(searchTerm == null){
-            System.out.println("Dokumen tidak ditemukan");
-        }else{
-	    System.out.print("Kata " + term + " =>");
-            ListIterator<Dokumen> iterator = index.listIterator();
-            while(iterator.hasNext()){
-            	System.out.print(iterator.next() + " ");
+
+    public void cari(String term) {
+        String[] tokens = term.split(" ");
+
+        if (tokens.length > 1) {
+            LinkedListOrderedUnique<Dokumen> ans = null;
+            for (int i = 0; i < tokens.length-1; i++) {
+                ans = intersect(getPost(tokens[i]),getPost(tokens[i+1]));
             }
-	    System.out.println(" ");
+            
+            if (ans == null) {
+                System.out.println("Dokumen tidak ditemukan");
+            } else {
+                System.out.print("Kata " + term + " =>");
+                ListIterator<Dokumen> iterator = ans.listIterator();
+                while (iterator.hasNext()) {
+                    System.out.print(iterator.next() + " ");
+                }
+                System.out.println(" ");
+            }
+            
+        } else {
+            LinkedListOrderedUnique<Dokumen> index = getPost(term);
+
+            if (index == null) {
+                System.out.println("Dokumen tidak ditemukan");
+            } else {
+                System.out.print("Kata " + term + " =>");
+                ListIterator<Dokumen> iterator = index.listIterator();
+                while (iterator.hasNext()) {
+                    System.out.print(iterator.next() + " ");
+                }
+                System.out.println(" ");
+            }
         }
+
     }
-    
-    public LinkedListOrderedUnique<Dokumen> getPost(String term){
+
+    public LinkedListOrderedUnique<Dokumen> getPost(String term) {
         LinkedListOrderedUnique<Dokumen> index = new LinkedListOrderedUnique<>();
         Term t = dict.get(new Term(term));
-        
-        if(t == null){
+
+        if (t == null) {
             return null;
-        }else{
+        } else {
             index = t.getListing();
         }
         return index;
     }
-    
-    public void intersect(LinkedListOrderedUnique<Dokumen> p1, 
-            LinkedListOrderedUnique<Dokumen> p2){
+
+    public LinkedListOrderedUnique<Dokumen> intersect(LinkedListOrderedUnique<Dokumen> p1,
+            LinkedListOrderedUnique<Dokumen> p2) {
         LinkedListOrderedUnique<Dokumen> hasil = null;
-        
-        while(p1 != null && p2 != null){
+
+        if(p1 != null && p2 != null) {
             ListIterator<Dokumen> it1 = p1.listIterator();
             ListIterator<Dokumen> it2 = p2.listIterator();
-            
-            while(it1.hasNext() && it2.hasNext()){
-                if(it1.next().equals(it2.next())){
+
+            while (it1.hasNext() && it2.hasNext()) {
+                if (it1.next().compareTo(it2.next())== 0) {
                     hasil.addSort(it1.next());
-                }else if(it1.next().compareTo(it2.next()) < 1){
+                } else if (it1.next().compareTo(it2.next()) < 1) {
                     it1.next();
-                }else
+                } else {
                     it2.next();
+                }
             }
-            
-            System.out.println("");
         }
+        return hasil;
     }
 }

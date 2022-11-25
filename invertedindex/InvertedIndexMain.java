@@ -18,9 +18,9 @@ public class InvertedIndexMain {
         invindex.bacaFile();
         
         invindex.cari("kawasan");
-//        coba1.search("-");
+        invindex.cari("hari");
 //        coba1.search("rumah");
-//        invindex.intersect("kawasan", "hari");
+        invindex.cari("kawasan hari");
         
 //        boolean lanjut = true;
 //        int input;
