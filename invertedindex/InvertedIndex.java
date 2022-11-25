@@ -91,11 +91,14 @@ public class InvertedIndex {
         Term searchTerm = dict.get(new Term(term));
         
         if(searchTerm == null){
-            System.out.println("Kata tidak ditemukan");
+            System.out.println("Dokumen tidak ditemukan");
         }else{
-            LinkedListOrderedUnique<Dokumen> postSearch = searchTerm.getListing();
-            
-            
+	    System.out.println("Kata " + pTerm + " =>");
+            ListIterator<Dokumen> iterator = searchTerm.getListing().listIterator();
+            while(iterator.hasNext()){
+            	System.out.print(iterator.next() + " ");
+            }
+	    System.out.println(" ");
         }
     }
 }
