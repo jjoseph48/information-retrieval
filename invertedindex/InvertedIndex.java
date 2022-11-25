@@ -32,10 +32,10 @@ public class InvertedIndex {
         if (name.exists()) {
             if (name.isDirectory()) {
                 String directory[] = name.list();
-                System.out.println("n\nDirectort contents:\n");
+//                System.out.println("n\nDirectort contents:\n");
 
                 for (String directoryName : directory) {
-                    System.out.printf("%s\n", directoryName);
+//                    System.out.printf("%s\n", directoryName);
 
                     try {
                         input = new Scanner(new File(name.getAbsolutePath() + "\\" + directoryName));
@@ -46,7 +46,7 @@ public class InvertedIndex {
                                 String[] tokens = sentence.split(" ");
                                 for (String token : tokens) {
                                     add(token, directoryName);
-                                    System.out.println(directoryName + " " + token);
+//                                    System.out.println(directoryName + " " + token);
                                 }
                             }
 
@@ -62,7 +62,7 @@ public class InvertedIndex {
                         System.err.println("Error opening file");
                         System.exit(1);
                     }
-                    System.out.println("");
+//                    System.out.println("");
 
                 }
             } else {
@@ -93,7 +93,7 @@ public class InvertedIndex {
         if(searchTerm == null){
             System.out.println("Dokumen tidak ditemukan");
         }else{
-	    System.out.println("Kata " + searchTerm + " =>");
+	    System.out.print("Kata " + term + " =>");
             ListIterator<Dokumen> iterator = searchTerm.getListing().listIterator();
             while(iterator.hasNext()){
             	System.out.print(iterator.next() + " ");

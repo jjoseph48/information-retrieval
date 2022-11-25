@@ -27,7 +27,7 @@ public class Dokumen implements Comparable{
 
     @Override
     public String toString() {
-        return "Dokumen{" + "namaDok=" + namaDok + '}';
+        return " '"+ this.namaDok + "'";
     }
   
 }
