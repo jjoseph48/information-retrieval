@@ -89,16 +89,50 @@ public class InvertedIndex {
     
     public void cari(String term){
         Term searchTerm = dict.get(new Term(term));
+        LinkedListOrderedUnique<Dokumen> index = getPost(term);
         
         if(searchTerm == null){
             System.out.println("Dokumen tidak ditemukan");
         }else{
 	    System.out.print("Kata " + term + " =>");
-            ListIterator<Dokumen> iterator = searchTerm.getListing().listIterator();
+            ListIterator<Dokumen> iterator = index.listIterator();
             while(iterator.hasNext()){
             	System.out.print(iterator.next() + " ");
             }
 	    System.out.println(" ");
+        }
+    }
+    
+    public LinkedListOrderedUnique<Dokumen> getPost(String term){
+        LinkedListOrderedUnique<Dokumen> index = new LinkedListOrderedUnique<>();
+        Term t = dict.get(new Term(term));
+        
+        if(t == null){
+            return null;
+        }else{
+            index = t.getListing();
+        }
+        return index;
+    }
+    
+    public void intersect(LinkedListOrderedUnique<Dokumen> p1, 
+            LinkedListOrderedUnique<Dokumen> p2){
+        LinkedListOrderedUnique<Dokumen> hasil = null;
+        
+        while(p1 != null && p2 != null){
+            ListIterator<Dokumen> it1 = p1.listIterator();
+            ListIterator<Dokumen> it2 = p2.listIterator();
+            
+            while(it1.hasNext() && it2.hasNext()){
+                if(it1.next().equals(it2.next())){
+                    hasil.addSort(it1.next());
+                }else if(it1.next().compareTo(it2.next()) < 1){
+                    it1.next();
+                }else
+                    it2.next();
+            }
+            
+            System.out.println("");
         }
     }
 }
