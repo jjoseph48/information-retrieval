@@ -87,7 +87,7 @@ public class InvertedIndex {
         return true;
     }
     
-    public void search(String term){
+    public void cari(String term){
         Term searchTerm = dict.get(new Term(term));
         
         if(searchTerm == null){
