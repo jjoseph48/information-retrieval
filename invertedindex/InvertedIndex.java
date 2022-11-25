@@ -93,7 +93,7 @@ public class InvertedIndex {
         if(searchTerm == null){
             System.out.println("Dokumen tidak ditemukan");
         }else{
-	    System.out.println("Kata " + pTerm + " =>");
+	    System.out.println("Kata " + searchTerm + " =>");
             ListIterator<Dokumen> iterator = searchTerm.getListing().listIterator();
             while(iterator.hasNext()){
             	System.out.print(iterator.next() + " ");
