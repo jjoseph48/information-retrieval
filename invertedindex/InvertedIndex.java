@@ -138,16 +138,18 @@ public class InvertedIndex {
 
     public LinkedListOrderedUnique<Dokumen> intersect(LinkedListOrderedUnique<Dokumen> p1,
             LinkedListOrderedUnique<Dokumen> p2) {
-        LinkedListOrderedUnique<Dokumen> hasil = null;
+        LinkedListOrderedUnique<Dokumen> hasil = new LinkedListOrderedUnique<>();
 
         if(p1 != null && p2 != null) {
             ListIterator<Dokumen> it1 = p1.listIterator();
             ListIterator<Dokumen> it2 = p2.listIterator();
 
             while (it1.hasNext() && it2.hasNext()) {
-                if (it1.next().compareTo(it2.next())== 0) {
-                    hasil.addSort(it1.next());
-                } else if (it1.next().compareTo(it2.next()) < 1) {
+                Dokumen dok1 = it1.next();
+                Dokumen dok2 = it2.next();
+                if (dok1.compareTo(dok2)== 0) {
+                    hasil.addSort(dok1);
+                } else if (dok1.compareTo(dok2) < 1) {
                     it1.next();
                 } else {
                     it2.next();
