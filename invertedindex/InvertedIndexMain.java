@@ -17,10 +17,10 @@ public class InvertedIndexMain {
         InvertedIndex invindex = new InvertedIndex();
         invindex.bacaFile();
         
-        invindex.cari("kawasan");
+        invindex.cari("mulai");
         invindex.cari("hari");
-//        coba1.search("rumah");
-        invindex.cari("kawasan hari");
+        invindex.cari("jalan");
+        invindex.cari("mulai hari jalan");
         
 //        boolean lanjut = true;
 //        int input;
