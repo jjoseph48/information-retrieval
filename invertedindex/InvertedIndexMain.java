@@ -13,38 +13,18 @@ import java.util.Scanner;
  */
 public class InvertedIndexMain {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         InvertedIndex invindex = new InvertedIndex();
         invindex.bacaFile();
         
-        invindex.cari("mulai");
-        invindex.cari("hari");
+        // Pencarian satu keyword
+        invindex.cari("semarang");
+        invindex.cari("rabu,");
         invindex.cari("jalan");
-        invindex.cari("mulai hari jalan");
+        invindex.cari("kawasan");
         
-//        boolean lanjut = true;
-//        int input;
-//        String kata;
-//        
-//        while(lanjut){
-//            System.out.println("Pilihan :");
-//            System.out.println("1. Inputkan 1 untuk melanjutkan pencarian");
-//            System.out.println("1. Inputkan 2 untuk menutup aplikasi");
-//            
-//            System.out.print("Masukkan inputan :");
-//            input = sc.nextInt();
-//            
-//            switch (input){
-//                case 1:
-//                    System.out.print("Masukkan kata yang ingin dicari :");
-//                    kata = sc.next();
-//                    invindex.cari(kata);
-//                    break;
-//                case 2:
-//                    System.out.println("Program selesai");
-//                    lanjut = false;
-//                    break;
-//            }       
-//        }
+        // Pencarian empat keyword
+        System.out.println("Pencarian empat keyword");
+        invindex.cari("semarang rabu, jalan kawasan");
+        
     }
 }

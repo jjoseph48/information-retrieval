@@ -91,9 +91,9 @@ public class InvertedIndex {
         String[] tokens = term.split(" ");
 
         if (tokens.length > 1) {
-            LinkedListOrderedUnique<Dokumen> ans = null;
-            for (int i = 0; i < tokens.length-1; i++) {
-                ans = intersect(getPost(tokens[i]),getPost(tokens[i+1]));
+            LinkedListOrderedUnique<Dokumen> ans = getPost(tokens[0]);
+            for (int i = 1; i < tokens.length; i++) {
+                ans = intersect(ans,getPost(tokens[i]));
             }
             
             if (ans == null) {
@@ -143,13 +143,13 @@ public class InvertedIndex {
         if(p1 != null && p2 != null) {
             ListIterator<Dokumen> it1 = p1.listIterator();
             ListIterator<Dokumen> it2 = p2.listIterator();
-
+            
             while (it1.hasNext() && it2.hasNext()) {
-                Dokumen dok1 = it1.next();
-                Dokumen dok2 = it2.next();
-                if (dok1.compareTo(dok2)== 0) {
-                    hasil.addSort(dok1);
-                } else if (dok1.compareTo(dok2) < 1) {
+                if (p1.get(it1.nextIndex()).compareTo(p2.get(it2.nextIndex()))== 0) {
+                    hasil.addSort(p1.get(it1.nextIndex()));
+                    it1.next();
+                    it2.next();
+                } else if (p1.get(it1.nextIndex()).compareTo(p2.get(it2.nextIndex())) < 1) {
                     it1.next();
                 } else {
                     it2.next();
