@@ -5,7 +5,6 @@
  */
 package invertedindex;
 
-import java.util.Scanner;
 
 /**
  *
@@ -17,10 +16,12 @@ public class InvertedIndexMain {
         invindex.bacaFile();
         
         // Pencarian satu keyword
+        System.out.println("Pencarian satu keyword");
         invindex.cari("semarang");
         invindex.cari("rabu,");
         invindex.cari("jalan");
         invindex.cari("kawasan");
+        System.out.println("");
         
         // Pencarian empat keyword
         System.out.println("Pencarian empat keyword");
