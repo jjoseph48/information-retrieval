@@ -10,7 +10,7 @@ package invertedindex;
  * @author Gallery
  */
 public class Dokumen implements Comparable{
-    String namaDok;
+    private String namaDok;
 
     public Dokumen(String namaDok) {
         this.namaDok = namaDok;

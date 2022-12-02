@@ -12,7 +12,7 @@ import LinkedList.LinkedListOrderedUnique;
  * @author Gallery
  */
 public class Term implements Comparable{
-    String namaTerm;
+    private String namaTerm;
     LinkedListOrderedUnique<Dokumen> listing;
     
     public Term(String namaTerm){
