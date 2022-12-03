@@ -124,7 +124,7 @@ public class InvertedIndex {
 
     }
 
-    public LinkedListOrderedUnique<Dokumen> getPost(String term) {
+    private LinkedListOrderedUnique<Dokumen> getPost(String term) {
         LinkedListOrderedUnique<Dokumen> index = new LinkedListOrderedUnique<>();
         Term t = dict.get(new Term(term));
 
@@ -136,7 +136,7 @@ public class InvertedIndex {
         return index;
     }
 
-    public LinkedListOrderedUnique<Dokumen> intersect(LinkedListOrderedUnique<Dokumen> p1,
+    private LinkedListOrderedUnique<Dokumen> intersect(LinkedListOrderedUnique<Dokumen> p1,
             LinkedListOrderedUnique<Dokumen> p2) {
         LinkedListOrderedUnique<Dokumen> hasil = new LinkedListOrderedUnique<>();
 
