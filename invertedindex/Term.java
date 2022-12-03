@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package invertedindex;
-
 import LinkedList.LinkedListOrderedUnique;
 
 /**
@@ -17,6 +16,7 @@ public class Term implements Comparable{
     
     public Term(String namaTerm){
         this.namaTerm = namaTerm;
+        listing = new LinkedListOrderedUnique<Dokumen>();
     }
 
     public String getNamaTerm() {
